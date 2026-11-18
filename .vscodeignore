@@ -1,0 +1,10 @@
+**
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE.txt
+!TERMS.md
+!PRIVACY.md
+!src/**/*.js
+!media/icon.png
+!media/walkthrough/*.md

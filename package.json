@@ -1,0 +1,218 @@
+{
+  "name": "zpl-atlas",
+  "displayName": "ZPL Atlas",
+  "description": "ZPL label files: labels, text fields, structure check. Pro: barcode check with check digits and layout check in millimetres. Works offline.",
+  "version": "0.1.0",
+  "publisher": "SmallStepsStudio",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "icon": "media/icon.png",
+  "pricing": "Trial",
+  "homepage": "https://github.com/small-steps-studio/zpl-atlas#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/small-steps-studio/zpl-atlas"
+  },
+  "bugs": {
+    "url": "https://github.com/small-steps-studio/zpl-atlas/issues"
+  },
+  "galleryBanner": {
+    "color": "#3a2f1f",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "keywords": [
+    "zpl",
+    "zpl label",
+    "zpl ii",
+    "label printer",
+    "thermal printer",
+    "shipping label",
+    "barcode label",
+    "zpl viewer",
+    "zpl check",
+    "label design",
+    "code 128",
+    "qr code",
+    "ean-13",
+    "upc-a",
+    "data matrix",
+    "maxicode",
+    "check digit",
+    "label size",
+    "dpi",
+    "warehouse",
+    "logistics",
+    "offline"
+  ],
+  "main": "./src/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "activationEvents": [],
+  "scripts": {
+    "test": "node scripts/run-tests.js",
+    "gate": "node scripts/release-gate.js",
+    "vscode:prepublish": "node scripts/release-gate.js --skip-tests",
+    "package": "npx --yes @vscode/vsce package --no-dependencies",
+    "package:local": "node scripts/package-local.js",
+    "check-vsix": "node scripts/check-vsix.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "zplAtlas.showLabels",
+        "title": "ZPL Atlas: Show Labels",
+        "icon": "$(tag)"
+      },
+      {
+        "command": "zplAtlas.showTextFields",
+        "title": "ZPL Atlas: Show Text Fields"
+      },
+      {
+        "command": "zplAtlas.showSyntax",
+        "title": "ZPL Atlas: Show Label Structure Check"
+      },
+      {
+        "command": "zplAtlas.showBarcodes",
+        "title": "ZPL Atlas: Show Barcode Check (Pro)"
+      },
+      {
+        "command": "zplAtlas.showLayout",
+        "title": "ZPL Atlas: Show Layout Check (Pro)"
+      },
+      {
+        "command": "zplAtlas.openSample",
+        "title": "ZPL Atlas: Open Sample File"
+      },
+      {
+        "command": "zplAtlas.openWalkthrough",
+        "title": "ZPL Atlas: Open Walkthrough"
+      },
+      {
+        "command": "zplAtlas.showDocumentation",
+        "title": "ZPL Atlas: Show Documentation"
+      },
+      {
+        "command": "zplAtlas.reportProblem",
+        "title": "ZPL Atlas: Report A Problem"
+      },
+      {
+        "command": "zplAtlas.buyPro",
+        "title": "ZPL Atlas: Buy Pro"
+      },
+      {
+        "command": "zplAtlas.enterKey",
+        "title": "ZPL Atlas: Enter Licence Key"
+      },
+      {
+        "command": "zplAtlas.licenceStatus",
+        "title": "ZPL Atlas: Show Licence Status"
+      },
+      {
+        "command": "zplAtlas.removeLicence",
+        "title": "ZPL Atlas: Remove Licence From This Machine"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "zplAtlas.showLabels",
+          "when": "resourceExtname == .zpl || resourceExtname == .prn || resourceLangId == zpl",
+          "group": "navigation@90"
+        }
+      ]
+    },
+    "walkthroughs": [
+      {
+        "id": "gettingStarted",
+        "title": "Get started with ZPL Atlas",
+        "description": "Open a sample label file, see its labels, text fields and structure check, and try the Pro barcode check and layout check in the free 14-day trial.",
+        "steps": [
+          {
+            "id": "zplAtlas.step.openSample",
+            "title": "Open a sample file",
+            "description": "ZPL Atlas reads ZPL, the command language of many thermal label printers. The sample holds two invented warehouse labels with one wrong check digit and one field that falls off the label, so every report has something to show. Open it to follow along, or open a label file of your own.\n[Open Sample File](command:zplAtlas.openSample)",
+            "media": {
+              "markdown": "media/walkthrough/open-sample.md"
+            },
+            "completionEvents": [
+              "onCommand:zplAtlas.openSample"
+            ]
+          },
+          {
+            "id": "zplAtlas.step.free",
+            "title": "Run Show Labels",
+            "description": "Every label with its lines, number of fields and barcodes, size in dots and print quantity. The report opens as a new Markdown document; your file is not changed.\n[Show Labels](command:zplAtlas.showLabels)",
+            "media": {
+              "markdown": "media/walkthrough/free.md"
+            },
+            "completionEvents": [
+              "onCommand:zplAtlas.showLabels"
+            ]
+          },
+          {
+            "id": "zplAtlas.step.more",
+            "title": "Use the other free reports",
+            "description": "Every free report works without a key, an account or a network connection: Show Text Fields, Show Label Structure Check.\n[Show Text Fields](command:zplAtlas.showTextFields)\n[Show Label Structure Check](command:zplAtlas.showSyntax)",
+            "media": {
+              "markdown": "media/walkthrough/more.md"
+            },
+            "completionEvents": [
+              "onCommand:zplAtlas.showTextFields",
+              "onCommand:zplAtlas.showSyntax"
+            ]
+          },
+          {
+            "id": "zplAtlas.step.pro",
+            "title": "Try Pro free for 14 days",
+            "description": "The first Pro command you run starts a free 14-day trial on this computer, with no key and no network: Show Barcode Check, Show Layout Check.\n[Show Barcode Check](command:zplAtlas.showBarcodes)",
+            "media": {
+              "markdown": "media/walkthrough/pro.md"
+            },
+            "completionEvents": [
+              "onCommand:zplAtlas.showBarcodes",
+              "onCommand:zplAtlas.showLayout"
+            ]
+          },
+          {
+            "id": "zplAtlas.step.licence",
+            "title": "Licence and help",
+            "description": "Buy Pro (Personal USD 19, Business USD 39 per user), enter a key, see the licence status, or report a problem.\n[Show Licence Status](command:zplAtlas.licenceStatus)\n[Report A Problem](command:zplAtlas.reportProblem)",
+            "media": {
+              "markdown": "media/walkthrough/licence.md"
+            },
+            "completionEvents": [
+              "onCommand:zplAtlas.licenceStatus"
+            ]
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "ZPL Atlas",
+      "properties": {
+        "zplAtlas.maxFileSizeMB": {
+          "type": "number",
+          "default": 50,
+          "minimum": 0.1,
+          "maximum": 50,
+          "markdownDescription": "Largest file (in MB) a report reads, up to 50 MB (VS Code passes files only up to 50 MB to extensions). Larger files are refused with a message."
+        },
+        "zplAtlas.openReportsAsPreview": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Open each report in the Markdown preview as well as in a new editor."
+        }
+      }
+    }
+  }
+}
