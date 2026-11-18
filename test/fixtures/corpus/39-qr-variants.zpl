@@ -1,0 +1,5 @@
+^XA
+^FO10,10^BQN,2,6^FDQA,https://example.test/a^FS
+^FO10,300^BQN,2,6^FDHM,N0123456789^FS
+^FO10,600^BQN,2,6^FDplain text^FS
+^XZ
